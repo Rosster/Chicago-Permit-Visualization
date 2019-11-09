@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chicago City Permits</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/flag_favicon.ico') }}">
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-1.4.0.min.js"></script>
+    <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+    {{ bokeh_script | safe }}
+</head>
+<body>
+
+<div class="wrapper">
+    <header class="header"><h2>Chicago City Permit Choropleth</h2></header>
+  <article class="main">
+    {{ bokeh_plot | safe }}
+  </article>
+
+  <aside class="aside aside-1">
+      <form method="get">
+          <div class="row">
+              <div>
+                    <select class="form_input" id="permit_type" name="permit_type">
+                        {% for permit_type in permit_types %}
+                            {% if permit_type == current_permit_type %}
+                            <option value="{{ permit_type }}" selected>{{ permit_type }}</option>
+                            {% else %}
+                            <option value="{{ permit_type }}" >{{ permit_type }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+
+              </div>
+          </div>
+            <div class="row">
+                <div>
+                    <select class="form_input" id="year" name="year">
+                        {% for year in years %}
+                            {% if year == current_year %}
+                            <option value="{{ year }}" selected>{{ year }}</option>
+                            {% else %}
+                            <option value="{{ year }}" >{{ year }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+          </div>
+          <div class="row">
+                <div>
+                    <button type="submit" class="form_input submit_button" >Submit</button>
+                </div>
+          </div>
+      </form>
+  </aside>
+
+  <aside class="aside aside-2"></aside>
+  <footer class="footer"><pre>@rosster</pre></footer>
+</div>
+
+
+</body>
+</html>
