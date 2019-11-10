@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Markup, Response, redirect, url_for, request, jsonify, session
+from flask import Flask, render_template, request
 import analysis
 from bokeh.embed import components
 from bokeh.layouts import layout
@@ -36,7 +36,6 @@ default_script, default_div = configure_plot('total', geo_data.years[-1], geo_da
 @app.route('/', methods=['GET'])
 def index():
     if request.args:
-        print(request.args)
         permit_type = request.args.get('permit_type')
         year = request.args.get('year', 0)
         year = 0 if year == '' else int(year)
