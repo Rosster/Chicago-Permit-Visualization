@@ -3,14 +3,15 @@ import analysis
 from bokeh.embed import components
 from bokeh.layouts import layout
 from urllib.parse import quote_plus
+import os
 
 ##################
 # Data Functions #
 ##################
 
 geo_data = analysis.PermitDataJson(
-    geo_json_path=r"C:\Development\Python\Permit_Website\Data\Boundaries - ZIP Codes.geojson",
-    permit_df_csv_path=r"C:\Development\Python\Permit_Website\Data\grouped_permit_data.csv")
+    geo_json_path=f"Data{os.sep}Boundaries - ZIP Codes.geojson",
+    permit_df_csv_path=f"Data{os.sep}grouped_permit_data.csv")
 
 
 #########################
