@@ -22,25 +22,25 @@
 }
 
 .header {
-  border: 1px dashed lightgrey;
+  /*border: 1px dashed lightgrey;*/
 }
 
 .footer {
-  border: 1px dashed lightgrey;
+  /*border: 1px dashed lightgrey;*/
 }
 
 .main {
   align-content: space-around;
-  border: 1px dashed lightgrey;
-    height: 80vh;
+  /*border: 1px dashed lightgrey;*/
+    height: 75vh;
 }
 
 .aside-1 {
-  border: 1px dashed lightgrey;
+  /*border: 1px dashed lightgrey;*/
 }
 
 .aside-2 {
-  border: 1px dashed lightgrey;
+  /*border: 1px dashed lightgrey;*/
 }
 
 .form_input {
@@ -75,7 +75,7 @@
 .down_view {
   position: absolute;
   left: 45%;
-  bottom: 5%;
+  bottom: 8%;
   height: 5%;
   width: 10%;
 }
