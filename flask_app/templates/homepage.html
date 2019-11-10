@@ -6,6 +6,7 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/flag_favicon.ico') }}">
     <script src="https://cdn.bokeh.org/bokeh/release/bokeh-1.4.0.min.js"></script>
     <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ bokeh_script | safe }}
 </head>
 <body>
