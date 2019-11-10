@@ -13,6 +13,10 @@
 <div class="wrapper">
     <header class="header"><h2>Chicago City Permit Choropleth</h2></header>
   <article class="main">
+      <div class="change_view left_view"><a href="/?year={{ prev_year }}&permit_type={{ current_permit_type|quote_plus }}">← {{ prev_year }}</a></div>
+      <div class="change_view right_view"><a href="/?year={{ next_year }}&permit_type={{ current_permit_type|quote_plus }}">{{ next_year }} →</a></div>
+      <div class="change_view up_view"><a href="/?year={{ current_year }}&permit_type={{ prev_permit_type|quote_plus }}">{{ prev_permit_type }} ⬏</a></div>
+      <div class="change_view down_view"><a href="/?year={{ current_year }}&permit_type={{ next_permit_type|quote_plus }}">{{ next_permit_type }} ⬎</a></div>
     {{ bokeh_plot | safe }}
   </article>
 
@@ -59,4 +63,8 @@
 
 
 </body>
+<script>
+
+
+</script>
 </html>

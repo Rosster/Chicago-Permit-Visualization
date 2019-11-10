@@ -2,6 +2,7 @@ from flask import Flask, render_template, Markup, Response, redirect, url_for, r
 import analysis
 from bokeh.embed import components
 from bokeh.layouts import layout
+from urllib.parse import quote_plus
 
 ##################
 # Data Functions #
@@ -27,6 +28,7 @@ def configure_plot(permit_type: str, year: int, geo_data_obj:analysis.PermitData
 ####################
 
 app = Flask(__name__)
+app.jinja_env.filters['quote_plus'] = lambda u: quote_plus(u)
 
 default_script, default_div = configure_plot('total', geo_data.years[-1], geo_data)
 
@@ -43,16 +45,30 @@ def index():
                                          year,
                                          geo_data)
         else:
-            permit_type, year = 'total', geo_data.years[-1]
+            permit_type, year = 'Total', geo_data.years[-1]
             script, div = default_script, default_div
     else:
-        permit_type, year = 'total', geo_data.years[-1]
+        permit_type, year = 'Total', geo_data.years[-1]
         script, div = default_script, default_div
+
+    permit_types = list(geo_data.permit_display_to_full_name_dict.keys())
+    years = geo_data.years
+
+    next_permit_type = permit_types[(permit_types.index(permit_type) + 1) % len(permit_types)]
+    prev_permit_type = permit_types[(permit_types.index(permit_type) - 1) % len(permit_types)]
+
+    next_year = years[(years.index(year) + 1) % len(years)]
+    prev_year = years[(years.index(year) - 1) % len(years)]
+
 
     return render_template('homepage.html',
                            bokeh_script=script,
                            bokeh_plot=div,
-                           permit_types=list(geo_data.permit_display_to_full_name_dict.keys()),
-                           years=geo_data.years,
+                           permit_types=permit_types,
+                           years=years,
                            current_permit_type=permit_type,
-                           current_year=year)
+                           current_year=year,
+                           next_permit_type=next_permit_type,
+                           prev_permit_type=prev_permit_type,
+                           next_year=next_year,
+                           prev_year=prev_year)
